@@ -98,20 +98,24 @@ $.appId = 10009;
     if (!token) continue
     $.canHelp = true
     if ($.shareCodes && $.shareCodes.length) console.log(`\n\n寻宝大作战，自己账号内部循环互助\n\n`);
+    var i = 0;
     for (let id of $.shareCodes) {
-      console.log(`账号${$.UserName} 去参加 ${id} 寻宝大作战`)
-      await joinGroup(id)
-      if (!$.canHelp) break
-      await $.wait(1000 * 10)
+      i++;
+      if(i < 3){
+        console.log(`账号${$.UserName} 去参加 ${id} 寻宝大作战`)
+        await joinGroup(id)
+        if (!$.canHelp) break
+        await $.wait(1000 * 10)
+      }
     }
     if (!$.canHelp) continue
     console.log(`\n\n寻宝大作战，助力作者\n`);
-    for (let id of $.strGroupIds) {
-      console.log(`账号${$.UserName} 去参加寻宝大作战 ${id} 等待10秒`)
-      await joinGroup(id)
-      if (!$.canHelp) break
-      await $.wait(1000 * 10)
-    }
+    // for (let id of $.strGroupIds) {
+    //   console.log(`账号${$.UserName} 去参加寻宝大作战 ${id} 等待10秒`)
+    //   await joinGroup(id)
+    //   if (!$.canHelp) break
+    //   await $.wait(1000 * 10)
+    // }
   }
   await showMsg();
 })()
