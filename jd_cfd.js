@@ -982,7 +982,7 @@ function submitGroupId() {
               resolve();
             }
           } else {
-            $.log('\n\n你的【🏝寻宝大作战】互助码: ' + strGroupId + '(每天都变化,旧的不可用)\n\n');
+            $.log('\n\n你的【🏝寻宝大作战】互助码: ' + strGroupId + '\n\n');
             $.shareCodes.push(strGroupId)
           }
         }
