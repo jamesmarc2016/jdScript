@@ -102,8 +102,8 @@ if ($.isNode()) {
       if (cookiesArr && $.canHelp) {
         console.log(`\n账号${$.UserName} 内部相互进团\n`);
         let i = 1;
-        let tuanIds1 = $.tuanIds.size > 1 ? $.tuanIds[0] : null;
-        let tuanIds2 = $.tuanIds.size > 2 ? $.tuanIds[1] : null;
+        let tuanIds1 = $.tuanIds.length > 1 ? $.tuanIds[0] : null;
+        let tuanIds2 = $.tuanIds.length > 2 ? $.tuanIds[1] : null;
         for (let item of $.tuanIds) {
           if(i < 3 && ((null != tuanIds1 && item == tuanIds1) || (null != tuanIds2 && item == tuanIds2))){
             console.log(`\n${$.UserName} 去参加团 ${item}`);
