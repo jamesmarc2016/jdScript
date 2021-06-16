@@ -1336,7 +1336,6 @@ function shareCodesFormat() {
 function requireConfig() {
   return new Promise(async resolve => {
     tuanActiveId = $.isNode() ? (process.env.TUAN_ACTIVEID || tuanActiveId) : ($.getdata('tuanActiveId') || tuanActiveId);
-    tuanActiveId = "laD7IwPwDF1-Te-MvbW9Iw=="
     if (!tuanActiveId) {
       await updateTuanIdsCDN();
       if ($.tuanConfigs && $.tuanConfigs['tuanActiveId']) {
