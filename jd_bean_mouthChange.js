@@ -82,7 +82,7 @@ if ($.isNode()) {
 async function showMsg() {
     if ($.errorMsg) return
     allMessage += `账号${$.index}：${$.nickName || $.UserName}\n当月收入：${$.monthIncomeBean}京豆 🐶\n当月支出：${$.monthExpenseBean}京豆 🐶\n当前京豆：${$.beanCount}(今日将过期${$.expirejingdou})京豆 🐶${$.message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
-    $.msg($.name, '', `账号${$.index}：${$.nickName || $.UserName}\n今日收入：${$.monthIncomeBean}京豆 🐶\n当月支出：${$.monthExpenseBean}京豆 🐶\n当前京豆：${$.beanCount}(今日将过期${$.expirejingdou})京豆🐶${$.message}`, {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
+    $.msg($.name, '', `账号${$.index}：${$.nickName || $.UserName}\n当月收入：${$.monthIncomeBean}京豆 🐶\n当月支出：${$.monthExpenseBean}京豆 🐶\n当前京豆：${$.beanCount}(今日将过期${$.expirejingdou})京豆🐶${$.message}`, {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
 }
 async function bean() {
     // console.log(`北京时间零点时间戳:${parseInt((Date.now() + 28800000) / 86400000) * 86400000 - 28800000}`);
