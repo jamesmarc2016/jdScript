@@ -20,7 +20,7 @@ cron "2 9 * * *" script-path=jd_bean_change.js, tag=京东资产变动通知
 ============小火箭=========
 京东资产变动通知 = type=cron,script-path=jd_bean_change.js, cronexpr="2 9 * * *", timeout=3600, enable=true
  */
-const $ = new Env('京东月资产变动通知');
+const $ = new Env('京东年资产变动通知');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
