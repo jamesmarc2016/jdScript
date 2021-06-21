@@ -58,11 +58,6 @@ $.appId = 10009;
   }
   $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
   await requestAlgo();
-  let res = {}, res2 = await getAuthorShareCode("https://raw.githubusercontent.com/gitupdate/updateTeam/master/shareCodes/cfd.json")
-  if (new Date().getHours() <= 3) res = await getAuthorShareCode('http://cdn.annnibb.me/cfd.json');
-  if (!res2) res2 = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/cfd.json')
-  $.strMyShareIds = [...(res && res.shareId || []),...(res2 && res2.shareId || [])]
-  $.strGroupIds = [...(res && res.strGroupIds || []),...(res2 && res2.strGroupIds || [])]
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -201,39 +196,6 @@ function helpFriend() {
     //   }
     // }
     resolve()
-  })
-}
-
-function getAuthorShareCode(url) {
-  return new Promise(async resolve => {
-    const options = {
-      url: `${url}?${new Date()}`, "timeout": 10000, headers: {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-      }
-    };
-    if ($.isNode() && process.env.TG_PROXY_HOST && process.env.TG_PROXY_PORT) {
-      const tunnel = require("tunnel");
-      const agent = {
-        https: tunnel.httpsOverHttp({
-          proxy: {
-            host: process.env.TG_PROXY_HOST,
-            port: process.env.TG_PROXY_PORT * 1
-          }
-        })
-      }
-      Object.assign(options, { agent })
-    }
-    $.get(options, async (err, resp, data) => {
-      try {
-        resolve(JSON.parse(data))
-      } catch (e) {
-        // $.logErr(e, resp)
-      } finally {
-        resolve();
-      }
-    })
-    await $.wait(10000)
-    resolve();
   })
 }
 
@@ -1153,33 +1115,7 @@ function showMsg() {
   });
 }
 
-function readShareCode() {
-  console.log(`开始`)
-  return new Promise(async resolve => {
-    $.get({
-      url: `http://share.turinglabs.net/api/v3/jxcfd/query/${randomCount}/`,
-      'timeout': 10000
-    }, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} API请求失败，请检查网路重试`)
-        } else {
-          if (data) {
-            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
-            data = JSON.parse(data);
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data);
-      }
-    })
-    await $.wait(10000);
-    resolve()
-  })
-}
+
 //格式化助力码
 function shareCodesFormat() {
   return new Promise(async resolve => {
@@ -1187,14 +1123,6 @@ function shareCodesFormat() {
     $.newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-    } else {
-      console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
-      // const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
-      $.newShareCodes = [...$.strMyShareIds, "F45CB4F07997DFE748E5656521A9034446A1568F6950206B0D44A5664662275D"];
-    }
-    const readShareCodeRes = await readShareCode();
-    if (readShareCodeRes && readShareCodeRes.code === 200) {
-      $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
     }
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
