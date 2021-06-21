@@ -93,15 +93,11 @@ $.appId = 10009;
     if (!token) continue
     $.canHelp = true
     if ($.shareCodes && $.shareCodes.length) console.log(`\n\n寻宝大作战，自己账号内部循环互助\n\n`);
-    var i = 0;
     for (let id of $.shareCodes) {
-      i++;
-      if(i < 3){
-        console.log(`账号${$.UserName} 去参加 ${id} 寻宝大作战`)
-        await joinGroup(id)
-        if (!$.canHelp) break
-        await $.wait(1000 * 10)
-      }
+      console.log(`账号${$.UserName} 去参加 ${id} 寻宝大作战`)
+      await joinGroup(id)
+      if (!$.canHelp) break
+      await $.wait(1000 * 10)
     }
     if (!$.canHelp) continue
     console.log(`\n\n寻宝大作战，助力作者\n`);
@@ -945,7 +941,9 @@ function submitGroupId() {
             }
           } else {
             $.log('\n\n你的【🏝寻宝大作战】互助码: ' + strGroupId + '\n\n');
-            $.shareCodes.push(strGroupId)
+            if($.index <= 2){
+              $.shareCodes.push(strGroupId)
+            }
           }
         }
       } catch (e) {
