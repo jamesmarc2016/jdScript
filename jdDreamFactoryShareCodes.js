@@ -6,7 +6,13 @@
 //云服务器腾讯云函数等NOde.js用户在此处填写东东萌宠的好友码。
 // 同一个京东账号的好友互助码用@符号隔开,不同京东账号之间用&符号或者换行隔开,下面给一个示例
 // 如: 京东账号1的shareCode1@京东账号1的shareCode2&京东账号2的shareCode1@京东账号2的shareCode2
+<<<<<<< HEAD
 let shareCodes = []
+=======
+let shareCodes = [
+  
+]
+>>>>>>> 09c208ff8b5f0c3a4e568d0646013f412ffcc50c
 
 // 从日志获取互助码
 // const logShareCodes = require('./utils/jdShareCodes');
