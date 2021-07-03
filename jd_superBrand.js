@@ -28,7 +28,7 @@ const randomCount = $.isNode() ? 20 : 5;
 const Opencardtw= $.isNode() ? (process.env.Opencardtw?process.env.Opencardtw:false):false
 const notify = $.isNode() ? require('./sendNotify') : '';
 let merge = {}
-let codeList = 2
+let codeList = []
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
     cookie = '';
@@ -111,7 +111,7 @@ const JD_API_HOST = `https://api.m.jd.com/client.action`;
             $.isLogin = true;
             $.nickName = '';
             console.log(`\n******开始【京东账号${$.index}】\n`);
-            for (l = 0; l < codeList.length; l++) {
+            for (l = 0; l < 2; l++) {
                 console.log(`为 ${codeList[l]}助力中`)
                 let code = await doTask("secondfloor", $.enpid, $.inviteenaid, codeList[l], 2)
                 if (code == 108) {
