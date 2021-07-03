@@ -117,8 +117,6 @@ const JD_API_HOST = `https://api.m.jd.com/client.action`;
                 if (code == 108) {
                     l = 9999;
                     console.log("助力次数已满")
-                }else if(code == 103){
-                codeList.splice(l--, 1) //任务已完成               
                 }
             }
         }
@@ -199,8 +197,10 @@ function getCode(source, actid) {
                             let itemid = result.ext.assistTaskDetail.itemId
                             //  console.log(result)
                             $.inviteenaid = result.encryptAssignmentId
-                            codeList[codeList.length] = itemid
-                            console.log(`获取邀请码成功 ${itemid}`);
+                            if($.index < 3){
+                                codeList[codeList.length] = itemid
+                                console.log(`获取邀请码成功 ${itemid}`);
+                            }
                         } else {
                             console.log(data)
                         }
