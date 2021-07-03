@@ -28,7 +28,7 @@ const randomCount = $.isNode() ? 20 : 5;
 const Opencardtw= $.isNode() ? (process.env.Opencardtw?process.env.Opencardtw:false):false
 const notify = $.isNode() ? require('./sendNotify') : '';
 let merge = {}
-let codeList = []
+let codeList = 2
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
     cookie = '';
